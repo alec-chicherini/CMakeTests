@@ -5,4 +5,5 @@
 int main()
 {
 	timedelay TD;
+	std::cout << "sizeof(TD)=" << sizeof(TD)<<std::endl;
 }

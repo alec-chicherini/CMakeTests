@@ -2,5 +2,5 @@
 
 struct A
 {
-	A() { std::cout << "A Ctor" << std::endl; }
+	A() { std::cout << "Actor-"; }
 };

@@ -3,5 +3,5 @@
 
 struct C:public B
 {
-	C() { std::cout << "C ctor" << std::endl; }
+	C() { std::cout << "Cctor"<< std::endl; }
 };

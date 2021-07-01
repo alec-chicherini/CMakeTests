@@ -18,4 +18,3 @@ endif()
 set(SOURCE_EXE boost_example.cpp)
 
 add_executable(project3 ${SOURCE_EXE})
-
