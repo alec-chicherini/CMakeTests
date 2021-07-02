@@ -6,10 +6,10 @@ project("project_multy" CXX)
 add_executable(project_m main.cpp)
 
 
-#add_library(A A.h)
-add_library(B B.cpp)
-#add_library(C C.h)
 
-#set_target_properties(C project_m PROPERTIES LINKER_LANGUAGE CXX)
+add_library(B B.cpp)
+
+
+
 
 target_link_libraries(project_m B)

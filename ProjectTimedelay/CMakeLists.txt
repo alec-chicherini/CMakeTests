@@ -30,7 +30,7 @@ file(
      )
 
 message(
-STATUS ${ALL_HEADES_AND_CPP} " COPY TO "
+STATUS "${ALL_HEADES_AND_CPP}" " COPY TO "
 ${CMAKE_SOLUTION_SOURCE_DIR}/include/timedelay/)
 
 include_directories(${CMAKE_SOLUTION_SOURCE_DIR}/timedelay)
