@@ -74,44 +74,46 @@ include(CMakeScript1.cmake)
 message(${VAR_INSIDE_SCRIPT})
 
 #
-add_executable(ProjectTutorial main.cpp)
+add_executable(project_tutorial main.cpp)
 add_library(library STATIC main2.cpp)
-target_link_libraries(ProjectTutorial library)
+target_link_libraries(project_tutorial library)
 
-target_sources(ProjectTutorial PUBLIC main3.cpp)
-
-# not working because of build time
-#macro(message_gen)
-#	add_custom_target(
-#	msg_gen
-#     COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_FILE:ProjectTutorial>")
-#endmacro()
-#
-#message_gen()
-
-#message_gen($<TARGET_EXISTS:ProjectTutorial>) 
-#message_gen($<TARGET_EXISTS:library>) 
-#	   
-#message_gen(RUNTIME_OUTPUT_DIRECTORY)
-#message_gen(RUNTIME_OUTPUT_NAME)
-#message_gen(LIBRARY_OUTPUT_DIRECTORY)
-#message_gen(LIBRARY_OUTPUT_NAME)
-#	  
-#message_gen($<TARGET_FILE:ProjectTutorial>)
-#message_gen($<TARGET_FILE_NAME:ProjectTutorial>)
-#message_gen($<TARGET_FILE:library>)
-#message_gen($<TARGET_FILE_NAME:library>)
-
+target_sources(project_tutorial PUBLIC main3.cpp)
 
 add_custom_target(print
         ${CMAKE_COMMAND} -E 
-		echo $<TARGET_EXISTS:ProjectTutorial>
+		echo $<TARGET_EXISTS:project_tutorial>
 		&& echo $<TARGET_EXISTS:library>
-		&& echo $<TARGET_FILE:ProjectTutorial>
-		&& echo $<TARGET_FILE_NAME:ProjectTutorial>
+		&& echo $<TARGET_FILE:project_tutorial>
+		&& echo $<TARGET_FILE_NAME:project_tutorial>
 		&& echo $<TARGET_FILE:library>
 		&& echo $<TARGET_FILE_NAME:library>
     )
 #cmake -S. -BBuild -G "Ninja"
 #cmake --build . --target print
 
+find_package(GSL QUIET)
+
+if(GSL_FOUND)
+message("GSL  FOUND")
+else()
+message("GSL NOT FOUND")
+endif()
+
+#[=[
+multiline comment
+https://habr.com/ru/post/433822/
+#]=]
+
+if(WIN32)
+
+install(TARGETS project_tutorial DESTINATION bin)
+install(TARGETS library DESTINATION lib)
+set(CPACK_PACKAGE_NAME "project_tutorial")
+set(CPACK_PACKAGE_VENDOR "Chicherin inc.")
+set(CPACK_PACKAGE_CONTACT "chicherin.alexey@gmail.com")
+set(CPACK_PACKAGE_DESCRIPTION "The CPACK test")
+set(CPACK_OUTPUT_FILE_PREFIX cpack)
+set(CPACK_GENERATOR "NSIS")
+include(CPack)
+endif(WIN32)
