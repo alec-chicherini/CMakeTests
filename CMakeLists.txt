@@ -15,6 +15,7 @@ set(P4_DIR "Project4")
 set(PT_DIR "ProjectTimedelay")
 set(PM_DIR "ProjectMulty")
 set(PTUT_DIR "ProjectTutorial")
+set(PGEN_DIR "ProjectGenerated")
 
 # Include sub-projects.
 add_subdirectory(${P1_DIR} ${P1_DIR}/build)
@@ -24,6 +25,7 @@ add_subdirectory(${P4_DIR} ${P4_DIR}/build)
 add_subdirectory(${PT_DIR} ${PT_DIR}/build)
 add_subdirectory(${PM_DIR} ${PM_DIR}/build)
 add_subdirectory(${PTUT_DIR} ${PTUT_DIR}/build)
+add_subdirectory(${PGEN_DIR} ${PGEN_DIR}/build)
 
 #tests
 include(CTest)
@@ -36,3 +38,8 @@ add_test(NAME testT COMMAND project_timedelay.exe WORKING_DIRECTORY ${PT_DIR}/bu
 add_test(NAME testTUT COMMAND project_tutorial.exe WORKING_DIRECTORY ${PTUT_DIR}/build)
 set_tests_properties(testTUT PROPERTIES
 PASS_REGULAR_EXPRESSION "CMAKE TUTORIAL")
+add_test(NAME testGEN COMMAND proj_gen.exe WORKING_DIRECTORY ${PGEN_DIR}/build)
+set_tests_properties(testGEN PROPERTIES
+PASS_REGULAR_EXPRESSION "Result message:")
+
+#rm * -Recurse;cmake ../; cmake --build .; ctest -C Debug

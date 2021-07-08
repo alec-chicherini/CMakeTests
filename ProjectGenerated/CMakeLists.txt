@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.20)
 
 project(project_generation VERSION 1.0.0 LANGUAGES CXX)
 
-
-
 option(use_hello "Build the main source file with word 'Hello'" NO)
 option(use_world "Build the main source file with word 'World'" NO)
 
